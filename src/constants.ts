@@ -88,7 +88,8 @@ export const ConfigKeys = {
     TB2ROBOT_OUTPUT_XML_PATH: "outputXmlFilePath",
     OPEN_TESTING_VIEW_AFTER_TEST_GENERATION: "openTestingViewAfterTestGeneration",
     CERTIFICATE_PATH: "certificatePath",
-    PROXY_URL: "proxy"
+    PROXY_URL: "proxy",
+    ENABLE_VERSION_CHECK: "enableVersionCheck"
     // PROXY_STRICT_SSL: "proxyStrictSSL",
 } as const;
 

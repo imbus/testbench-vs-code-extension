@@ -4,8 +4,9 @@ import { loginToServerAndGetSessionDetails, TestBenchLoginResult, PlayServerConn
 import { TestBenchConnection } from "./testBenchTypes";
 import { logger } from "./extension";
 import { SharedSessionManager } from "./sharedSessionManager";
-import { StorageKeys } from "./constants";
+import { ConfigKeys, StorageKeys } from "./constants";
 import { DependencyVersionError } from "./errors";
+import { getExtensionSetting } from "./configuration";
 
 export const TESTBENCH_AUTH_PROVIDER_ID = "testbench-auth";
 export const TESTBENCH_AUTH_PROVIDER_LABEL = "TestBench"; // User-facing name in VS Code Accounts UI
@@ -616,6 +617,11 @@ export class TestBenchAuthenticationProvider implements vscode.AuthenticationPro
  * @param modal Whether to show a modal dialog (true) or a regular notification (false)
  */
 export async function validateServerVersion(serverVersion: string, modal: boolean = true): Promise<void> {
+    const versionCheckEnabled = getExtensionSetting<boolean>(ConfigKeys.ENABLE_VERSION_CHECK) ?? true;
+    if (!versionCheckEnabled) {
+        logger.debug("[validateServerVersion] Version check is disabled in configuration.");
+        return;
+    }
     if (!serverVersion || serverVersion.trim() === "") {
         logger.warn("[validateServerVersion] Server version is empty or not provided.");
 

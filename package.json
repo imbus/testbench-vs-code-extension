@@ -4,7 +4,7 @@
     "displayName": "TestBench",
     "description": "A Visual Studio Code extension for imbus TestBench.",
     "icon": "resources/icons/testbench-logo.png",
-    "version": "0.6.3",
+    "version": "0.6.4",
     "repository": {
         "type": "git",
         "url": "https://github.com/imbus/testbench-vscode-extension"
@@ -271,6 +271,19 @@
                         "description": "Path to the public TestBench certificate .pem file. Can be either an absolute path or a path relative to the workspace location.",
                         "order": 1,
                         "scope": "resource"
+                    }
+                }
+            },
+            {
+                "id": "versionCheck",
+                "title": "Version Check",
+                "properties": {
+                    "testbenchExtension.enableVersionCheck": {
+                        "type": "boolean",
+                        "description": "If enabled, the extension verifies on login that the TestBench server version is compatible with this extension and shows a warning if it is not.",
+                        "default": true,
+                        "order": 1,
+                        "scope": "window"
                     }
                 }
             }
